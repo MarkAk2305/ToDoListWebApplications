@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ToDoListWebApplications.Models.ToDo>
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Task/_LayoutPage1.cshtml";
+}
+
+<style type="text/css">
+
+    table {
+        border-collapse: collapse;
+    }
+
+        table th {
+            background-color: #F7F7F7;
+            color: #333;
+            font-weight: bold;
+        }
+
+        table th, table td {
+            width: 100px;
+        }
+
+    .selected {
+        background-color: #666;
+        color: #fff;
+    }
+</style>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#tb").sortable({
+            items: 'tr:not(tr:first-child)',
+            cursor: 'pointer',
+            axis: 'y',
+            dropOnEmpty: false,
+            start: function (e, ui) {
+                ui.item.addClass("selected");
+            },
+            stop: function (e, ui) {
+                ui.item.removeClass("selected");
+            },
+            receive: function (e, ui) {
+                $(this).find("tbody").append(ui.item);
+            }
+        });
+    });
+</script>
+
+<div class="form-horizontal">
+    <hr />
+    <h2 class="text-info">My Tasks</h2>
+    <hr />
+    <br />
+    <a href="/Task/Create/" class="btn btn-success " style="margin: 0px 0px 10px 90%;">
+        CREATE TASK
+    </a>
+    <br />
+</div>
+
+<div id="tableDiv">
+
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Resources/Custom Scripts/BuildTable.js"></script>
+}

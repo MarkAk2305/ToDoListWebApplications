@@ -1,0 +1,103 @@
+﻿@model ToDoListWebApplications.Models.ToDo
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Task/_LayoutPage1.cshtml";
+}
+
+@using (Html.BeginForm("Edit","Task",FormMethod.Post, new { enctype = "multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <h2 class="text-info">Edit Task</h2>
+        <hr />
+        <div class="border container border-primary" style="padding: 30px; ">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.ToDoID)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ToDoName, htmlAttributes: new { @class = " floatingInput" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ToDoName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ToDoName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ToDoDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ToDoDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ToDoDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="DueDate">Due Date</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    /////////////   SET THE DATE OF CREATION TO SELECT THE DATE FROM DATABASE BEFORE EDITING//////////////
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Priority, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Priority, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Priority, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @*<div class="form-group">
+                        <fieldset class="form-group container " style="margin: 10px 0px">
+                            <label class="form-group" style="margin: 10px -10px">
+                                <strong>Priority</strong>
+                            </label>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="Priority" id="Low" value="Low" checked="checked">
+                                    Low
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="Priority" id="Medium" value="Medium">
+                                    Medium
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="Priority" id="High" value="High">
+                                    High
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>*@
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Status)
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-success">SAVE</button>
+                        <a class="btn btn-danger" href="/Task/index">CANCEL</a>
+
+                    </div>
+                </div>
+     
+            @Html.ValidationSummary()
+        </div>
+    </div>
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>

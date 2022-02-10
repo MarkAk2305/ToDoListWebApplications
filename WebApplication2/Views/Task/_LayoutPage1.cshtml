@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Content/Style/back.css" rel="stylesheet" />
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/umd/popper.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            @Html.ActionLink("To Do List Application", "Index", "Task", new { area = "" }, new { @class = "navbar-brand" })
+            @*<a class="navbar-brand " href="/Task/Index">To Do List Application</a>*@
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        @Html.ActionLink("Dashboard", "Index", "Task", new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("About", "About", "Task", new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Contact", "Contact", "Task", new { @class = "nav-link" })
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+
+                <form method="get" action="/Task/Index" class="d-flex form-floating">
+                    <input name="searchString"
+                           id="searchString"
+                           class="form-control me-2 floatingInput"
+                           type="search"
+                           placeholder="Search By Task Name..."
+                           value="@ViewBag.Search" />
+                    <label for="searchString">Search By Task Name...</label>
+
+                    <button class="btn btn-secondary" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My To Do List Web Application</p>
+        </footer>
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
